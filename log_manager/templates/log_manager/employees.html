@@ -1,0 +1,109 @@
+{% extends 'log_manager/base.html' %}
+{% load static %}
+
+{% block nav-items %}
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'dashboard' %}">
+    <i class="fa fa-list-alt nav-icon"></i>Records
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'statistics' %}">
+    <i class="fa fa-bar-chart nav-icon"></i>Statistics
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link active" href="#">
+    <i class="fa-solid fa-users nav-icon"></i>Employees
+  </a>
+</li>
+{% endblock %}
+
+{% block main-content %}
+
+<!-- Add employee Modal -->
+<div class="modal  fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="addEmployeeModalLabel"> A Employee</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="add-employee-form">
+          <form method="POST" action="" class="employee-form" enctype="multipart/form-data">
+            <div class="employee-form-fields-wrap">
+              {% csrf_token %}
+              {% for field in form %}
+              <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+              </div>
+                {% if field.errors %}
+                <div class="error">
+                  {% for error in field.errors %}
+                  <p>{{ error }}</p>
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </span>
+              {% endfor %}
+              {% if form.non_field_errors %}
+              <div class="error">
+                {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+            <input type="submit" value="Submit" class="submit-btn add-employee-btn">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main-users-card-wrap">
+  <h2 class="scroll-animation">Users</h2>
+  <div class="users-table-wrap custom-table-wrap">
+    <div class="users-card-wrap">
+      {% for user in employees %}
+      <div class="user-card">
+        <div class="user-info">
+          <img src="{{ user.picture.url }}" alt="{{ user.name }}" class="user-img">
+          <span class="card-body">
+            <p class="username"><strong>Name: </strong>{{ user.name }}</p>
+            <!-- <p class="username"><strong>ID: </strong>{{ user.unique_id }}</p> -->
+            <p class="user-email"><strong>Contact: </strong>{{ user.phone }}</p>
+            <p class="user-email"><strong>Email: </strong>{{ user.email }}</p>
+            <p class="user-email"><strong>Department: </strong>{{ user.department }}</p>
+            <p class="user-email"><strong>Employee Type: </strong>{{ user.type }}</p>
+          </span>
+        </div>
+        <div class="card-footer cta-grid">
+          <a href="{% url 'edit_employee' user.id %}" class="edit-tag cta-tag" 
+            onclick="return confirm('Are you sure..?')">
+            <i class="fa fa-edit"></i>
+            Edit
+          </a>
+          <a href="{% url 'delete_employee' user.id %}" class="delete-tag cta-tag"
+            onclick="return confirm('Are you sure..?')">
+            <i class="fa fa-trash"></i>
+            Remove
+          </a>
+        </div>
+      </div>
+      {% empty %}
+      <h1>No users found.</h1>
+      {% endfor %}
+    </div>
+    <br>
+    <br>
+    <!-- Button trigger modal -->
+    <button class="cta-btn" data-bs-toggle="modal" data-bs-target="#addEmployeeModal">
+      <i class="fa fa-plus"></i> Add Employee
+    </button>
+  </div>
+</div>
+{% endblock %}

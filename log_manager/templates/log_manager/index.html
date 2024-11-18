@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="fa icon"
+      type="short icon"
+      href="{% static 'log_manager/images/kstu_logo.png' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
+    <link
+      href="{% static 'log_manager/css/style.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/c42d26af79.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Home | Attendance</title>
+  </head>
+  <body class="body">
+    <div id="container">
+      <header class="sticky-top">
+        <nav class="navbar fixed-top navbar-custom">
+          <div class="container-fluid container">
+            <a class="navbar-brand" href="#"
+              ><img
+                src="{% static 'log_manager/images/kstu_logo.png' %}"
+                width="40px"
+            /></a>
+            <span
+              class="menu-icon"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasDarkNavbar"
+              aria-controls="offcanvasDarkNavbar"
+              aria-label="Toggle navigation"
+            >
+              <i class="fa fa-bars"></i>
+            </span>
+            <div
+              class="offcanvas offcanvas-end nav-content"
+              tabindex="-1"
+              id="offcanvasDarkNavbar"
+              aria-labelledby="offcanvasDarkNavbarLabel"
+            >
+              <div class="offcanvas-header">
+                <p
+                  class="offcanvas-title nav-toggler"
+                  data-bs-dismiss="offcanvas"
+                  aria-label="Close"
+                  id="offcanvasDarkNavbarLabel"
+                >
+                  <i class="fa fa-arrow-left"></i> Back
+                </p>
+                <i
+                  class="fa fa-close"
+                  data-bs-dismiss="offcanvas"
+                  aria-label="Close"
+                ></i>
+              </div>
+              <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#"
+                      ><i class="fa fa-home"></i> Home</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}"
+                      ><i class="fa fa-sign-in"></i>Login as Admin</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#reviews"
+                      ><i class="fa fa-address-book"></i> Contact</a
+                    >
+                  </li>
+                </ul>
+                <br />
+                <br />
+
+                <div class="socials">
+                  <a href="#" title="Follow us on LinkedIn"
+                    ><i class="fa fa-linkedin"></i
+                  ></a>
+                  <a href="#" title="Follow us on Facebook"
+                    ><i class="fa fa-facebook"></i
+                  ></a>
+                  <a href="#" title="Send us a message"
+                    ><i class="fa fa-whatsapp"></i
+                  ></a>
+                  <a href="#" title="Follow us on Twitter"
+                    ><i class="fa fa-twitter"></i
+                  ></a>
+                  <a href="#" title="Follow us on YouTube"
+                    ><i class="fa fa-youtube"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <div class="hero-section">
+        <div class="hero-content container">
+          <h1 class="text-center w3-animate-zoom">Attendance Portal</h1>
+          <p class="text-center text-white">
+            Check in from anywhere. Simply enter your unique ID to access
+            <br />
+            the attendance form and keep your records up to date.
+            <br />
+            <strong class="tag">#E_Attendance</strong>
+          </p>
+
+          <br />
+          <br />
+          <div class="cta-group">
+            <a href="{% url 'checkin' %}" class="cta-btn">Check In</a>
+            <a href="{% url 'checkout' %}" class="cta-btn cta-checkout"
+              >Check Out</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <button onclick="topFunction()" id="myBtn" title="Go to top">
+        <i class="fa fa-arrow-up"></i>
+      </button>
+      <footer>
+        <div class="socials">
+          <h5>Follow Us</h5>
+          <span>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-youtube"></i></a>
+          </span>
+        </div>
+        <hr />
+        <p>&copy; 2024 KsTU Attendance System. All rights reserved.</p>
+      </footer>
+    </div>
+    <script src="{% static 'log_manager/js/idce-main.js' %}"></script>
+  </body>
+</html>

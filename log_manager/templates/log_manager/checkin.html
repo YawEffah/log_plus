@@ -1,0 +1,15 @@
+{% extends 'log_manager/base-form.html' %} {% block form %}
+<h4 class="text-center form-title">Check-In</h4>
+<form method="POST" action="{% url 'checkin' %}">
+  {% csrf_token %} {% for field in form %}
+  <div class="form-group">{{ field.label_tag }} {{ field }}</div>
+  {% endfor %}
+  <input type="submit" value="Check In" class="my-btn submit-btn" />
+  {% if error %}
+    <p class="sys-feedback error">{{ error }}</p>
+  {% endif %}
+</form>
+<p>
+  Already checked in?<a href="{% url 'checkout' %}" class="tag"> Checkout</a>
+</p>
+{% endblock %}

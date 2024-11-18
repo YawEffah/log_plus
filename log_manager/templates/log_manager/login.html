@@ -1,0 +1,10 @@
+{% extends 'log_manager/base-form.html' %} {% block form %}
+<form method="POST" action="{% url 'login' %}">
+  {% csrf_token %} {% for field in form %}
+  <div class="form-group">{{ field.label_tag }} {{ field }}</div>
+  {% endfor %} {% if errors %}
+    <p class="sys-feedback error">{{ errors }}</p>
+  {% endif %}
+  <input type="submit" value="Login" class="my-btn submit-btn" />
+</form>
+{% endblock %}

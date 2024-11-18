@@ -1,0 +1,134 @@
+{% extends 'log_manager/base.html' %}
+{% block nav-items %}
+<li class="nav-item">
+  <a class="nav-link active" href="{% url 'dashboard' %}">
+    <i class="fa fa-list-alt nav-icon"></i>Records
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'statistics' %}">
+    <i class="fa fa-bar-chart nav-icon"></i>Statistics
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'employees' %}">
+    <i class="fa-solid fa-users nav-icon"></i>Employees
+  </a>
+</li>
+{% endblock %}
+
+
+{% block main-content %}
+<div class="main-wrap">
+  <h2 class="scroll-animation">Attendance Records</h2>
+
+  <!-- Date and Employee ID Filter Form -->
+  <form method="get" action="{% url 'dashboard' %}" class="filter-form">
+    <div class="form-group">
+      <label for="date">Date:</label>
+      <input class="filter-field" type="date" id="date" name="date" value="{{ filter_date }}" />
+    </div>
+
+    <div class="form-group">
+      <label for="employee_id">ID:</label>
+      <input class="filter-field" type="text" id="employee_id" name="employee_id" value="{{ employee_unique_id }}" placeholder="e.g 12323" />
+    </div>
+
+    <button type="submit" class="cta-btn filter-cta"><i class="fa fa-filter"></i> Filter</button>
+  </form>
+  <br />
+
+  <div class="application-table-wrap custom-table-wrap">
+    <div class="table-scroll">
+      <table class="application-table custom-table">
+        <thead class="sticky-top">
+          <tr>
+            <th>ID</th>
+            <th>Employee</th>
+            <th>Time In</th>
+            <th>Time Out</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for record in current_records %}
+          <tr>
+            <td data-label="employee_id">{{ record.employee.unique_id }}</td>
+            <td data-label="employee">{{ record.employee.name }}</td>
+            <td data-label="time-in">{{ record.checkin_time }}</td>
+            <td data-label="time-out">{{ record.checkout_time }}</td>
+            <td>
+              <div class="action-menu">
+                <i class="fa fa-ellipsis-v action-menu-icon"></i>
+                <div class="action-menu-content">
+                  <a href="javascript:void(0);" class="open-modal view-btn" data-record-id="{{ record.id }}">
+                    <i class="fa fa-eye action-icon"></i> View
+                  </a>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Records Modal -->
+          <div id="recordModal-{{ record.id }}" class="modal record-modal custom-modal" role="dialog" aria-labelledby="modalTitle-{{ record.id }}" aria-hidden="true">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="modalTitle-{{ record.id }}">Record Details</h4>
+                <button type="button" class="close-modal" data-record-id="{{ record.id }}" aria-label="Close">
+                  <i class="fa fa-times close-icon"></i>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="record-details">
+                  <span>
+                    <label>Employee ID</label>
+                    <input type="text" value="{{ record.employee.unique_id }}" disabled />
+                  </span>
+                  <span>
+                    <label>Employee Name</label>
+                    <input type="text" value="{{ record.employee.name }}" disabled />
+                  </span>
+                  <span>
+                    <label>Employee Email</label>
+                    <input type="text" value="{{ record.employee.email }}" disabled />
+                  </span>
+                  <span>
+                    <label>Employee Phone</label>
+                    <input type="text" value="{{ record.employee.phone }}" disabled />
+                  </span>
+                  <span>
+                    <label>Employee Type</label>
+                    <input type="text" value="{{ record.employee.type }}" disabled />
+                  </span>
+                  <span>
+                    <label>Department</label>
+                    <input type="text" value="{{ record.employee.department }}" disabled />
+                  </span>
+                  <span>
+                    <label>Time In</label>
+                    <input type="text" value="{{ record.checkin_time }}" disabled />
+                  </span>
+                  <span>
+                    <label>Time Out</label>
+                    <input type="text" value="{{ record.checkout_time }}" disabled />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% empty %}
+          <tr>
+            <td colspan="5">No records available</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <br />
+    <button type="button" class="cta-btn register-cta">
+      <i class="fa fa-download"></i> Download
+    </button>
+  </div>
+</div>
+{% endblock %}
