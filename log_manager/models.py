@@ -29,12 +29,28 @@ class Employee(models.Model):
     )
 
     def save(self, *args, **kwargs):
-        if not self.unique_id: 
-            self.unique_id = ''.join(random.choices('0123456789', k=8))  # Generate 6-digit numeric ID
+        if not self.unique_id:
+            self.unique_id = self.generate_unique_id()
         super().save(*args, **kwargs)
+
+    def generate_unique_id(self):
+        """Generate a unique ID in the format '0525XXXX', where XXXX is a sequence number."""
+        base_prefix = "0525"  # Static prefix
+        last_employee = Employee.objects.filter(unique_id__startswith=base_prefix).order_by('-unique_id').first()
+        if last_employee and last_employee.unique_id:
+            # Extract the numeric suffix and increment it
+            last_number = int(last_employee.unique_id[4:])
+            new_number = last_number + 1
+        else:
+            # Start the sequence if no employees exist
+            new_number = 1
+
+        # Format the new number as a zero-padded 4-digit number
+        return f"{base_prefix}{new_number:04d}"
 
     def __str__(self):
         return f"{self.name} - {self.unique_id}"
+
 
 
 
