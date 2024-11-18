@@ -1,0 +1,270 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: #1C133D;
+    transition: all 0.2s;
+}
+
+.body {
+    position: relative;
+    min-height: 100vh;
+    background: url('../images/back-img.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+}
+
+.body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1C133D;
+    opacity: 0.86; 
+    z-index: 1;
+}
+
+.body > * {
+    position: relative;
+    z-index: 2;
+}
+
+
+a{
+    text-decoration: none;
+}
+
+html, body{
+    background: #f1f1f1;
+}
+
+header{
+    height: 70px;
+    padding: 10px 0;
+    background: #D9D9D9;
+}
+
+.menu-icon{
+    border: 1px solid grey;
+    padding: 0 10px;
+    font-size: 22px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.menu-icon .fa{
+    color: grey;
+}
+
+.nav-content{
+    background: #1C133D;
+}
+
+.navbar .offcanvas-title, 
+.offcanvas .fa{
+    color: grey;
+}
+
+.navbar .nav-link{
+    margin: 10px 0;
+    color: grey;
+}
+
+
+.navbar .nav-link:hover{
+    color: #AC961A;
+}
+
+.navbar .nav-link .fa{
+    width: 20px;
+    color: grey;
+    margin-right: 20px;
+}
+
+.socials .fa:hover{
+    color: #AC961A;
+}
+
+.navbar .offcanvas-header{
+    padding: 30px;
+    cursor: pointer;
+}
+
+.offcanvas .fa-close{
+    color: red;
+    font-size: 20px;
+}
+
+.navbar .offcanvas-body{
+    padding: 40px;
+}
+
+.active{
+    color: #AC961A;
+}
+
+.navbar .socials{
+    width: 50%;
+    margin: 40px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.hero-section{
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    background-attachment: fixed;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: url('../images/hero.jpg') no-repeat center center/cover;
+}
+
+.hero-section h1{
+    color: #fff;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;   
+}
+
+.hero-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.tag{
+    color: #AC961A;
+}
+
+
+.cta-btn{
+    background: #AC961A;
+    border: none;
+    color: #1C133D;
+    margin: 0 5px;
+    padding: 10px 20px;
+    border-radius: 15px;
+}
+
+
+.cta-btn:hover{
+    color: white;
+    border: 1px solid #AC961A;
+    background: #1C133D;
+}
+
+.cta-checkout{
+    color: white;
+    border: #AC961A;
+    background: #1C133D;
+}
+
+.underline{
+    width: 200px;
+    margin: 15px auto;
+    border-radius: 10px;
+    border-bottom: 4px solid #AC961A;
+}
+
+
+
+/* Style for scroll animation */
+.scroll-animation {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  /* Animation class to be added when element is in viewport */
+  .animated {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+
+  #myBtn {
+    display: none; 
+    position: fixed; 
+    bottom: 20px; 
+    right: 20px; 
+    z-index: 99; 
+    border: none; 
+    outline: none; 
+    color: white; 
+    cursor: pointer; 
+    padding: 15px; 
+    border-top-right-radius: 50px;
+    border-top-left-radius: 50px;
+    font-size: 20px; 
+    background: #AC961A; 
+  }
+  
+  #myBtn:hover {
+    background-color: #898989; /* Add a dark-grey background on hover */
+    transition: 0.5s;
+  }
+
+
+/*Footer styles*/
+
+footer{
+    text-align: center;
+    padding: 30px;
+    font-size: 14px;
+    background: #1C133D;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+
+hr{
+    color: #939393;
+}
+
+footer h5{
+    color: #AC961A;
+}
+
+footer .fa{
+    color: #939393;
+}
+
+footer p, p a{
+    color: #939393;
+    text-decoration: none;
+}
+
+
+footer .socials span{
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto;
+}
+
+
+
+/*Media Queries*/
+@media (min-width:768px) {
+
+    .hero-section h1{
+        font-size: 3rem;
+    }
+
+    .our-clients .container{
+        grid-gap: 40px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1000px) {
+    .summary-section{
+        width: 800px;
+        margin-top: 100px;
+    }
+    
+}
