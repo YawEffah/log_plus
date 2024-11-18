@@ -1,4 +1,5 @@
 from django.db import models
+import random
 
 # Create your models here.
 
@@ -8,29 +9,34 @@ class Department(models.Model):
 
     def __str__(self):
         return self.name
-    
+
 
 class Employee(models.Model):
-    unique_id = models.CharField(max_length=50, unique=True)
+    unique_id = models.CharField(max_length=8, unique=True, blank=True)
     picture = models.ImageField(upload_to='employee_pictures', blank=True)
     name = models.CharField(max_length=100)
     email = models.EmailField()
     phone = models.CharField(max_length=10)
-    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    department = models.ForeignKey('Department', on_delete=models.CASCADE)
     type = models.CharField(
         choices=[
             ('NSS', 'NSS'),
-            ('Tull-time', 'Full-Time'),
+            ('Full-time', 'Full-Time'),
             ('Intern', 'Intern'),
             ('Contractor', 'Contractor'),
         ],
         max_length=100,
     )
 
+    def save(self, *args, **kwargs):
+        if not self.unique_id:  # Ensure `unique_id` is generated only for new objects
+            self.unique_id = ''.join(random.choices('0123456789', k=8))  # Generate 8-digit numeric ID
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return f"{self.name} - {self.unique_id}"
-    
-    
+
+
 
 class AttendanceRecord(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
