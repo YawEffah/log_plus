@@ -224,7 +224,7 @@ def checkin_view(request):
                 return render(request, 'log_manager/checkin.html', {'form': form, 'error': 'Invalid credentials!'})
     else:
         form = EmployeeIDForm()
-    return render(request, 'attendance/checkin.html', {'form': form})
+    return render(request, 'log_manager/checkin.html', {'form': form})
 
 
 

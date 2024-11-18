@@ -29,8 +29,8 @@ class Employee(models.Model):
     )
 
     def save(self, *args, **kwargs):
-        if not self.unique_id:  # Ensure `unique_id` is generated only for new objects
-            self.unique_id = ''.join(random.choices('0123456789', k=8))  # Generate 8-digit numeric ID
+        if not self.unique_id: 
+            self.unique_id = ''.join(random.choices('0123456789', k=8))  # Generate 6-digit numeric ID
         super().save(*args, **kwargs)
 
     def __str__(self):
