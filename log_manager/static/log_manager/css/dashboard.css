@@ -326,7 +326,7 @@ body {
 }
 
 .submit-btn:active,
-.submit-btn:hover{
+.submit-btn:hover {
     background-color: AC961A;
 }
 
@@ -353,7 +353,7 @@ body {
 }
 
 
-.filter-form{
+.filter-form {
     width: 320px;
     display: grid;
     grid-gap: 10px;
@@ -464,32 +464,32 @@ body {
 
 /*Statistics Page Style*/
 
-.attendance-statistics h3{
+.attendance-statistics h3 {
     font-weight: bold;
     color: #AC961A;
     font-size: 26px;
 }
 
-.employee-info-wrap{
+.employee-info-wrap {
     padding: 10px;
 }
 
-.employee-picture{
+.employee-picture {
     width: 220px;
     height: 220px;
     border-radius: 10px;
 }
 
 
-.employee-name{
+.employee-name {
     font-weight: bolder;
 }
 
-.employee-info p{
+.employee-info p {
     font-size: 18px;
 }
 
-.no-data-wrap{
+.no-data-wrap {
     width: 100%;
     display: flex;
     align-items: center;
@@ -498,19 +498,19 @@ body {
     margin: 0 auto;
 }
 
-.no-data-wrap h3{
+.no-data-wrap h3 {
     color: #AC961A;
     font-weight: bold;
 }
 
-.attendance_chart_wrap{
+.attendance_chart_wrap {
     width: 100%;
     overflow-x: scroll;
     margin: 0 auto;
 }
 
-#attendance_chart{
-    max-width:900px; 
+#attendance_chart {
+    max-width: 900px;
     width: 600px;
     height: 400px;
     overflow-y: hidden;
@@ -530,7 +530,7 @@ body {
 }
 
 .summary-stats:active,
-.summary-stats:hover{
+.summary-stats:hover {
     background-color: #F0F2F5;
 }
 
@@ -573,12 +573,12 @@ body {
     margin: 0 auto;
 }
 
-.close-modal{
+.close-modal {
     border: none;
     border-radius: 10px;
 }
 
-.close-modal .fa{
+.close-modal .fa {
     padding: 10px;
     color: #AC961A;
     font-size: 18px;
@@ -599,20 +599,21 @@ body {
     border-radius: 50%;
 }
 
-.update-modal .submit-btn{;
+.update-modal .submit-btn {
+
     margin-top: 10px;
 }
 
 
 
-.update-modal .submit-btn:hover{
+.update-modal .submit-btn:hover {
     background-color: #AC961A;
     margin-top: 10px;
 }
 
 
 .cta-grid {
-    margin-top: 10px ;
+    margin-top: 10px;
     display: grid;
     grid-gap: 40px;
     grid-template-columns: repeat(2, 1fr);
@@ -657,7 +658,7 @@ body {
     border-collapse: collapse;
 }
 
-.custom-table thead{
+.custom-table thead {
     padding: 15px;
     background-color: white;
     z-index: 5;
@@ -691,18 +692,30 @@ body {
     display: inline-block;
 }
 
-.action-menu-icon {
+.action-menu-icon,
+.action-btn {
     cursor: pointer;
     color: #939393;
     padding: 10px;
     border-radius: 50%;
-    ;
     font-size: 14px;
+    text-decoration: none;
     transition: background-color 0.3s ease;
 }
 
+.action-btn {
+    border-radius: 8px;
+    background-color: #ddd;
+}
+
+
 .action-menu-icon:hover {
     background-color: #ddd;
+}
+
+.action-btn:hover {
+    color: #939393;
+    background-color: #e6e9ec;
 }
 
 .action-menu-content {
@@ -863,7 +876,7 @@ footer .socials span {
         grid-template-columns: repeat(1, 1fr);
     }
 
-    .filter-form{
+    .filter-form {
         width: 420px;
         grid-template-columns: repeat(3, 1fr);
     }
@@ -876,7 +889,7 @@ footer .socials span {
         flex-direction: row;
     }
 
-    .employee-info-wrap{
+    .employee-info-wrap {
         display: flex;
         gap: 40px;
     }
@@ -885,8 +898,8 @@ footer .socials span {
         width: 450px;
     }
 
-    #attendance_chart{
-        max-width:100%; 
+    #attendance_chart {
+        max-width: 100%;
         width: 900px;
         height: 400px;
         overflow-y: hidden;
@@ -951,8 +964,8 @@ footer .socials span {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    #attendance_chart{
-        max-width:100%; 
+    #attendance_chart {
+        max-width: 100%;
         width: 100%;
     }
 

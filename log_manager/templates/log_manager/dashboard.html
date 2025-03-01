@@ -31,7 +31,8 @@
 
     <div class="form-group">
       <label for="employee_id">ID:</label>
-      <input class="filter-field" type="text" id="employee_id" name="employee_id" value="{{ employee_unique_id }}" placeholder="e.g 12323" />
+      <input class="filter-field" type="text" id="employee_id" name="employee_id" value="{{ employee_unique_id }}"
+        placeholder="e.g 12323" />
     </div>
 
     <button type="submit" class="cta-btn filter-cta"><i class="fa fa-filter"></i> Filter</button>
@@ -58,19 +59,15 @@
             <td data-label="time-in">{{ record.checkin_time }}</td>
             <td data-label="time-out">{{ record.checkout_time }}</td>
             <td>
-              <div class="action-menu">
-                <i class="fa fa-ellipsis-v action-menu-icon"></i>
-                <div class="action-menu-content">
-                  <a href="javascript:void(0);" class="open-modal view-btn" data-record-id="{{ record.id }}">
-                    <i class="fa fa-eye action-icon"></i> View
-                  </a>
-                </div>
-              </div>
+              <a href="javascript:void(0);" class="open-modal view-btn action-btn" data-record-id="{{ record.id }}">
+                <i class="fa fa-eye action-icon"></i> View
+              </a>
             </td>
           </tr>
 
           <!-- Records Modal -->
-          <div id="recordModal-{{ record.id }}" class="modal record-modal custom-modal" role="dialog" aria-labelledby="modalTitle-{{ record.id }}" aria-hidden="true">
+          <div id="recordModal-{{ record.id }}" class="modal record-modal custom-modal" role="dialog"
+            aria-labelledby="modalTitle-{{ record.id }}" aria-hidden="true">
             <div class="modal-content">
               <div class="modal-header">
                 <h4 class="modal-title" id="modalTitle-{{ record.id }}">Record Details</h4>
@@ -126,7 +123,7 @@
     </div>
 
     <br />
-   <!--  <button type="button" class="cta-btn register-cta">
+    <!--  <button type="button" class="cta-btn register-cta">
       <i class="fa fa-download"></i> Download
     </button> -->
   </div>

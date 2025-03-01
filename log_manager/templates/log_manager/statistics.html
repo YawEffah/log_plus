@@ -3,118 +3,117 @@
 
 {% block nav-items %}
 <li class="nav-item">
-  <a class="nav-link" href="{% url 'dashboard' %}">
-    <i class="fa fa-list-alt nav-icon"></i>Records
-  </a>
+    <a class="nav-link" href="{% url 'dashboard' %}">
+        <i class="fa fa-list-alt nav-icon"></i>Records
+    </a>
 </li>
 <li class="nav-item">
-  <a class="nav-link active" href="{% url 'statistics' %}">
-    <i class="fa fa-bar-chart nav-icon"></i>Statistics
-  </a>
+    <a class="nav-link active" href="{% url 'statistics' %}">
+        <i class="fa fa-bar-chart nav-icon"></i>Statistics
+    </a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="{% url 'employees' %}">
-    <i class="fa-solid fa-users nav-icon"></i>Employees
-  </a>
+    <a class="nav-link" href="{% url 'employees' %}">
+        <i class="fa-solid fa-users nav-icon"></i>Employees
+    </a>
 </li>
 {% endblock %}
 
 
 {% block main-content %}
-    <div class="statistics-container main-wrap">
-        <h2>Attendance Statistics</h2>
-        <!-- Employee Filter Form -->
-        <form method="get" action="{% url 'statistics' %}" class="employee-filter-form scroll-animation">
-            <!-- <label for="employee_id">Select Employee:</label> -->
-            <select class="filter-field" name="employee_id" id="employee_id" required onchange="this.form.submit();">
-                <option value="" disabled selected>...Select an employee...</option>
-                {% for emp in employees %}
-                    <option value="{{ emp.id }}" {% if emp.id == employee.id %}selected{% endif %}>
-                        {{ emp.name }}
-                    </option>
-                {% endfor %}
-            </select>
-        </form>
-        <br>
-        <div class="custom-table-wrap">
-            {% if employee %}
-                <div class="employee-info-wrap">
-                    <img src="{{ employee.picture.url }}" alt="{{ employee.name }}" class="employee-picture">
-                    <div class="employee-info">
-                        <h2 class="employee-name">{{ employee.name }}</h2>
-                        <p><strong>ID: </strong> {{ employee.unique_id }}</p>
-                        <p><strong>Phone:</strong> {{ employee.phone }}</p>
-                        <p><strong>Email:</strong> {{ employee.email }}</p>
-                        <p><strong>Department:</strong> {{ employee.department.name }}</p>
-                        <p><strong>Employee Type:</strong> {{ employee.type }}</p>
-                    </div>
-                </div>
-                <hr class="hr">
-                <div class="attendance-statistics">
-                    <h3 class="scroll-animation">Statistics</h3>
-                    <div class="attendance_chart_wrap">
-                        {% if no_chart_data %}
-                          <div class="no-data-wrap">
-                            <img src="{% static 'log_manager/images/no-data.gif' %}" width="70px">
-                            <h4>No attendance records!</h4>
-                        </div>
-                        <br>
-                        {% else %}
-                            <div id="attendance_chart">
-                                
-                            </div>
-                        {% endif %}
-                    </div>
-                    <hr class="hr">
-                    <div class="summary-stats scroll-animation">
-                        <h3>Summary</h3>
-                        <p><strong>Total Working Days:</strong> <span class="tag">{{ total_working_days }}</span></p>
-                        <p><strong>Total Days at Work:</strong> 
-                        {{ total_present }}
-                        <span class="tag">({{ present_percentage }}%)</span>
-                    </p>
-                        <p><strong>Total Absent Days:</strong>
-                        {{ total_absent }}
-                        <span class="tag">({{absent_percentage }}%)</span>
-                    </p>
-                    </div>
-
-                     <br />
-                    <button type="button" class="cta-btn register-cta scroll-animation">
-                      <i class="fa fa-download"></i> Download
-                    </button>
-                </div>
-            {% else %}
-                <div class="no-data-wrap">
-                    <img src="{% static 'log_manager/images/no-data.gif' %}" width="200px">
-                    <h3>No Employee Selected!</h3>
-                </div>
-            {% endif %}
+<div class="statistics-container main-wrap">
+    <h2>Attendance Statistics</h2>
+    <!-- Employee Filter Form -->
+    <form method="get" action="{% url 'statistics' %}" class="employee-filter-form scroll-animation">
+        <!-- <label for="employee_id">Select Employee:</label> -->
+        <select class="filter-field" name="employee_id" id="employee_id" required onchange="this.form.submit();">
+            <option value="" disabled selected>...Select an employee...</option>
+            {% for emp in employees %}
+            <option value="{{ emp.id }}" {% if emp.id == employee.id %}selected{% endif %}>
+                {{ emp.name }}
+            </option>
+            {% endfor %}
+        </select>
+    </form>
+    <br>
+    <div class="custom-table-wrap">
+        {% if employee %}
+        <div class="employee-info-wrap">
+            <img src="{{ employee.picture.url }}" alt="{{ employee.name }}" class="employee-picture">
+            <div class="employee-info">
+                <h2 class="employee-name">{{ employee.name }}</h2>
+                <p><strong>ID: </strong> {{ employee.unique_id }}</p>
+                <p><strong>Phone:</strong> {{ employee.phone }}</p>
+                <p><strong>Email:</strong> {{ employee.email }}</p>
+                <p><strong>Department:</strong> {{ employee.department.name }}</p>
+                <p><strong>Employee Type:</strong> {{ employee.type }}</p>
+            </div>
         </div>
+        <hr class="hr">
+        <div class="attendance-statistics">
+            <h3 class="scroll-animation">Statistics</h3>
+            <div class="attendance_chart_wrap">
+                {% if no_chart_data %}
+                <div class="no-data-wrap">
+                    <img src="{% static 'log_manager/images/no-data.gif' %}" width="70px">
+                    <h4>No attendance records!</h4>
+                </div>
+                <br>
+                {% else %}
+                <div id="attendance_chart">
+
+                </div>
+                {% endif %}
+            </div>
+            <hr class="hr">
+            <div class="summary-stats scroll-animation">
+                <h3>Summary</h3>
+                <p><strong>Total Working Days:</strong> <span class="tag">{{ total_working_days }}</span></p>
+                <p><strong>Total Days at Work:</strong>
+                    {{ total_present }}
+                    <span class="tag">({{ present_percentage }}%)</span>
+                </p>
+                <p><strong>Total Absent Days:</strong>
+                    {{ total_absent }}
+                    <span class="tag">({{absent_percentage }}%)</span>
+                </p>
+            </div>
+
+            <br />
+            <button type="button" class="cta-btn register-cta scroll-animation">
+                <i class="fa fa-download"></i> Download
+            </button>
+        </div>
+        {% else %}
+        <div class="no-data-wrap">
+            <img src="{% static 'log_manager/images/no-data.gif' %}" width="200px">
+            <h3>No Employee Selected!</h3>
+        </div>
+        {% endif %}
     </div>
+</div>
 
-    <!-- Google Charts Loader -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<!-- Google Charts Loader -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <script type="text/javascript">
-        google.charts.load('current', {
-            packages: ['corechart', 'bar']
-        });
-        google.charts.setOnLoadCallback(drawChart);
+<script type="text/javascript">
+    google.charts.load('current', {
+        packages: ['corechart', 'bar']
+    });
+    google.charts.setOnLoadCallback(drawChart);
 
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable({{ chart_data|safe }});
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable({{ chart_data| safe }});
 
-            var options = {
-                // title: 'Employee Attendance',
-                hAxis: { title: 'Month', titleTextStyle: { color: '#333' } },
-                vAxis: { title: 'Attendance:', minValue: 0, maxValue: 23 },
-                bars: 'vertical',
-            };
+    var options = {
+        // title: 'Employee Attendance',
+        hAxis: { title: 'Month', titleTextStyle: { color: '#333' } },
+        vAxis: { title: 'Attendance:', minValue: 0, maxValue: 23 },
+        bars: 'vertical',
+    };
 
-            var chart = new google.visualization.ColumnChart(document.getElementById('attendance_chart'));
-            chart.draw(data, options);
+    var chart = new google.visualization.ColumnChart(document.getElementById('attendance_chart'));
+    chart.draw(data, options);
         }
-    </script>
+</script>
 {% endblock %}
-
